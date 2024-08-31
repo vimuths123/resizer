@@ -24,6 +24,10 @@ class ResierPackageServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
-        $this->loadViewsFrom(__DIR__ . '/Views', 'resier');
+        // $this->loadViewsFrom(__DIR__ . '/Views', 'resier');
+
+        $this->publishes([
+            __DIR__.'/resources/js/Pages' => resource_path('js/Pages/Resier'),
+        ], 'resier-components');
     }
 }
