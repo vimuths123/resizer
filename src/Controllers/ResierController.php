@@ -25,9 +25,9 @@ class ResierController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '_' . $image->getClientOriginalName();
-            
-            // Store the file in the public disk
-            $path = Storage::disk('public')->putFileAs('resier_images', $image, $filename);
+
+            // Store the file in the storage/images directory
+            $path = Storage::disk('local')->putFileAs('images', $image, $filename);
 
             // Save image information to the database
             ResierImage::create([
@@ -35,9 +35,9 @@ class ResierController extends Controller
                 'path' => $path,
             ]);
 
-            return back()->with('success', 'Image uploaded successfully!');
+            return back()->with('message', 'Image uploaded successfully!');
         }
 
-        return back()->with('error', 'Failed to upload image.');
+        return back()->with('message', 'Failed to upload image.');
     }
 }
