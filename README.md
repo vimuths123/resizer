@@ -37,6 +37,12 @@ composer update
 php artisan vendor:publish --tag=resier-components
 ```
 
+4. Build the components:
+
+```
+npm run build
+```
+
 ## Usage
 
 After installation, you can access the resizer functionality at `/resier` route.
