@@ -4,8 +4,10 @@ namespace ResierPackage\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use ResierPackage\Models\ResierModel;
+use Illuminate\Support\Facades\Storage;
+use ResierPackage\Models\ResierImage;
 use Inertia\Inertia;
+
 
 class ResierController extends Controller
 {
@@ -16,15 +18,26 @@ class ResierController extends Controller
 
     public function submit(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string',
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Process the form data (e.g., save to database, send email, etc.)
-        // ...
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            
+            // Store the file in the public disk
+            $path = Storage::disk('public')->putFileAs('resier_images', $image, $filename);
 
-        return back()->with('success', 'Your message has been sent!');
+            // Save image information to the database
+            ResierImage::create([
+                'filename' => $filename,
+                'path' => $path,
+            ]);
+
+            return back()->with('success', 'Image uploaded successfully!');
+        }
+
+        return back()->with('error', 'Failed to upload image.');
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-// Models/ResierImage.php
-
-namespace YourNamespace\Resier\Models;
+namespace ResierPackage\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
