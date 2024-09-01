@@ -31,13 +31,19 @@ This plugin provides a simple resizer functionality for Laravel applications usi
 composer update
 ```
 
-3. Publish the components:
+3. Migrate the table:
+
+```
+php artisan migrate
+```
+
+4. Publish the components:
 
 ```
 php artisan vendor:publish --tag=resier-components
 ```
 
-4. Build the components:
+5. Build the components:
 
 ```
 npm run build
