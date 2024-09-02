@@ -33,6 +33,7 @@ class ResierController extends Controller
             ResierImage::create([
                 'filename' => $filename,
                 'path' => $path,
+                'storage' => 'local',
             ]);
 
             return back()->with('message', 'Image uploaded successfully!');
