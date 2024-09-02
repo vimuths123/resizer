@@ -28,7 +28,7 @@ This plugin provides a simple resizer functionality for Laravel applications usi
 2. Run the following command:
 
 ```
-composer update
+composer install
 ```
 
 3. Migrate the table:
