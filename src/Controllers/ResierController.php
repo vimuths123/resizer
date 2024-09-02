@@ -25,7 +25,8 @@ class ResierController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            $storage = 'local';
+            $storage = config('filesystems.default');
+            
             $filename = time() . '_' . $image->getClientOriginalName();
 
             // Store the file in the storage/images directory
