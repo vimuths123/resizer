@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('filename');
             $table->string('path');
-            $table->string('storage')->default('local');;
+            $table->string('storage')->default('local');
             $table->timestamps();
         });
     }
