@@ -74,7 +74,11 @@ function submit() {
       successMessage.value = 'Image uploaded successfully!'
     },
     onError: () => {
-      errorMessage.value = 'Failed to upload image.'
+      if (Object.keys(form.errors).length > 0) {
+        errorMessage.value = '';
+      } else {
+        errorMessage.value = 'Failed to upload image.';
+      }
     },
   });
 }
