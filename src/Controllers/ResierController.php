@@ -24,6 +24,8 @@ class ResierController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
+
+            $storage = 'local';
             $filename = time() . '_' . $image->getClientOriginalName();
 
             // Store the file in the storage/images directory
@@ -33,7 +35,7 @@ class ResierController extends Controller
             ResierImage::create([
                 'filename' => $filename,
                 'path' => $path,
-                'storage' => 'local',
+                'storage' => $storage,
             ]);
 
             return back()->with('message', 'Image uploaded successfully!');
